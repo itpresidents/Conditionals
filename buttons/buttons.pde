@@ -11,7 +11,6 @@ boolean buttonTopLeft = false;
 boolean buttonBottomLeft = false;
 
 //The bottom left will incorporate hovering so it needs additional booleans
-//boolean buttonBottomLeftClicked = false;
 boolean buttonBottomLeftHover = false;
 
 //Declare a fill variable for each button
@@ -20,7 +19,7 @@ float fillBottomRight;
 float fillTopLeft;
 float fillBottomLeft;
 
-//define active state colors
+//Define active state colors for Top Right Button
 color hoveringTopRight = color(200, 0, 80);
 color notHoveringTopRight = color(80, 0, 200);
 
@@ -39,8 +38,9 @@ void setup() {
 
 void draw() {
 
+  
   //*************CHECK CONDITIONS*************//    
-  //check if the mouse is inside the Top Right Square
+  //check if the mouse is inside the TOP RIGHT Square
   if (mouseX > width/2 && mouseY < height/2) {
     buttonTopRight = true;
     println("Inside Top Right");
@@ -49,7 +49,7 @@ void draw() {
     buttonTopRight = false;
   }
 
-  //check if the mouse is inside the Bottom Right square and if the mouse is pressed
+  //check if the mouse is inside the BOTTOM RIGHT square and if the mouse is pressed
   if (mouseX > width/2 && mouseY > height/2 && mousePressed) {
     buttonBottomRight = true;
     println("Clicked Bottom Right");
@@ -58,7 +58,7 @@ void draw() {
     buttonBottomRight = false;
   }
 
-  //check if the mouse is inside the Bottom Left button and if the button has been clicked
+  //check if the mouse is inside the BOTTOM LEFT button and if the button has been clicked
   if (buttonBottomLeft) {
     buttonBottomLeftHover = false;
   }
@@ -75,28 +75,28 @@ void draw() {
 
 
   //*************SET COLOR VALUES*************//
-  //determine the fill values for each buttons
+  //set fill value for TOP RIGHT
   if (buttonTopRight == true) {
     fillTopRight = hoveringTopRight;
   }
   else {
     fillTopRight = notHoveringTopRight;
   }
-
+  //set fill value for BOTTOM RIGHT
   if (buttonBottomRight) {
     fillBottomRight = 255;
   }
   else {
     fillBottomRight = 0;
   }
-  
+  //set fill value for TOP LEFT
   if (buttonTopLeft) {
     fillTopLeft = 255;
   }
   else {
     fillTopLeft = 0;
   }
-
+  //set fill value for BOTTOM LEFT
   //the Bottom Left button requires an "else if" to check for hover
   if (buttonBottomLeft) {
     fillBottomLeft = 255;
@@ -111,7 +111,7 @@ void draw() {
 
 
   //*************DRAW BUTTONS*************//
-  //set the fill value and draw each button
+  //draw each button with its resepctive fill value
   fill(fillTopLeft);
   rect(0, 0, width/2, height/2);
   fill(fillTopRight);
