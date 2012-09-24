@@ -15,11 +15,14 @@ boolean buttonBottomLeftClicked = false;
 boolean buttonBottomLeftHover = false;
 
 //Declare a fill variable for each button
-float fillTopRight;
+color fillTopRight;
 float fillBottomRight;
 float fillTopLeft;
 float fillBottomLeft;
 
+//define active state colors
+color hoveringTopRight = color(200, 0, 80);
+color notHoveringTopRight = color(80, 0, 200);
 
 void setup() {
 
@@ -36,6 +39,7 @@ void setup() {
 
 void draw() {
 
+  //*************CHECK CONDITIONS*************//    
   //check if the mouse is inside the Top Right Square
   if (mouseX > width/2 && mouseY < height/2) {
     buttonTopRight = true;
@@ -49,34 +53,36 @@ void draw() {
   if (mouseX > width/2 && mouseY > height/2 && mousePressed) {
     buttonBottomRight = true;
     println("Clicked Bottom Right");
-  } 
+  }
   else {
     buttonBottomRight = false;
   }
 
   //check if the mouse is inside the Bottom Left button and if the button has been clicked
-  if ((mouseX < width/2 && mouseY > height/2 && (buttonBottomLeftClicked)) || (buttonBottomLeftClicked) ) {
+  if (buttonBottomLeftClicked) {
     buttonBottomLeft = true;
     buttonBottomLeftHover = false;
-  } 
-  //check if the mouse is inside the Bottom Left button and if the button has not been clicked  
+  }
+  //check if the mouse is inside the Bottom Left button and if the button has not been clicked
   else if (mouseX < width/2 && mouseY > height/2 && !(buttonBottomLeftClicked)) {
     buttonBottomLeft = false;
     buttonBottomLeftHover = true;
     println("Hover Bottom Right");
-  } 
-  //all other scenarios (check if the mouse is outside the Bottom Left button and if the button has not been clicked)  
+  }
+  //all other scenarios (check if the mouse is outside the Bottom Left button and if the button has not been clicked)
   else {
     buttonBottomLeft = false;
     buttonBottomLeftHover = false;
   }
 
-  //determine the fill values for each buttons 
-  if (buttonTopRight) {
-    fillTopRight = 255;
+
+  //*************SET COLOR VALUES*************//
+  //determine the fill values for each buttons
+  if (buttonTopRight == true) {
+    fillTopRight = hoveringTopRight;
   }
   else {
-    fillTopRight = 0;
+    fillTopRight = notHoveringTopRight;
   }
 
   if (buttonBottomRight) {
@@ -99,34 +105,37 @@ void draw() {
   }
   else if (buttonBottomLeftHover) {
     fillBottomLeft = 125;
-  }  
+  }
   else {
     fillBottomLeft = 0;
-  } 
+  }
 
+
+
+  //*************DRAW BUTTONS*************//
   //set the fill value and draw each button
-  fill(fillTopLeft);  
+  fill(fillTopLeft);
   rect(0, 0, width/2, height/2);
-  fill(fillTopRight);  
+  fill(fillTopRight);
   rect(width/2, 0, width/2, height/2);
-  fill(fillBottomLeft);  
+  fill(fillBottomLeft);
   rect(0, height/2, width/2, height/2);
-  fill(fillBottomRight);  
+  fill(fillBottomRight);
   rect(width/2, height/2, width/2, height/2);
+  
 }
 
 
 //Use the mousePressed() function to toggle the Top Left and Bottom Left Buttons
 //This function is called outside the draw loop so the conditionals don't get reset each frame
 void mousePressed() {
-  if (mouseX < width/2 && mouseY < height/2 && mousePressed) {
+  if (mouseX < width/2 && mouseY < height/2) {
     buttonTopLeft = !buttonTopLeft;
     println("Toggle Top Left");
   }
 
-  if (mouseX < width/2 && mouseY > height/2 && mousePressed) {
+  if (mouseX < width/2 && mouseY > height/2) {
     buttonBottomLeftClicked = !buttonBottomLeftClicked;
     println("Toggle Bottom Left");
   }
 }
-
