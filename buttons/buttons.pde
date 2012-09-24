@@ -11,7 +11,7 @@ boolean buttonTopLeft = false;
 boolean buttonBottomLeft = false;
 
 //The bottom left will incorporate hovering so it needs additional booleans
-boolean buttonBottomLeftClicked = false;
+//boolean buttonBottomLeftClicked = false;
 boolean buttonBottomLeftHover = false;
 
 //Declare a fill variable for each button
@@ -59,15 +59,13 @@ void draw() {
   }
 
   //check if the mouse is inside the Bottom Left button and if the button has been clicked
-  if (buttonBottomLeftClicked) {
-    buttonBottomLeft = true;
+  if (buttonBottomLeft) {
     buttonBottomLeftHover = false;
   }
   //check if the mouse is inside the Bottom Left button and if the button has not been clicked
-  else if (mouseX < width/2 && mouseY > height/2 && !(buttonBottomLeftClicked)) {
-    buttonBottomLeft = false;
+  else if (mouseX < width/2 && mouseY > height/2) {
     buttonBottomLeftHover = true;
-    println("Hover Bottom Right");
+    println("Hover Bottom Left");
   }
   //all other scenarios (check if the mouse is outside the Bottom Left button and if the button has not been clicked)
   else {
@@ -135,7 +133,7 @@ void mousePressed() {
   }
 
   if (mouseX < width/2 && mouseY > height/2) {
-    buttonBottomLeftClicked = !buttonBottomLeftClicked;
+    buttonBottomLeft = !buttonBottomLeft;
     println("Toggle Bottom Left");
   }
 }
